@@ -1,0 +1,26 @@
+* {
+  padding: 2px;
+  color:#fff;
+  font-family: "MesloLGS NF", monospace;
+}
+#waybar{
+   background: rgba(0, 0, 0, 0); /* fully transparent */
+  /* Or slightly transparent, e.g.: */
+  /* background: rgba(0, 0, 0, 0.3); */
+  box-shadow: none; /* remove any shadows */
+  border: none; /* remove any borders */
+}
+#workspaces button {
+  padding: 0 6px;
+  color: #888;
+  font-size: 1.1em;
+}
+
+#workspaces button.active {
+  color: #00ff00;
+  font-weight: bold;
+}
+#clock, #cpu, #memory, #date, #custom-gpu_usage, #custom-gpu_temp {
+  padding: 0 8px;
+}
+
