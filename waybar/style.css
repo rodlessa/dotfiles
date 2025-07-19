@@ -1,7 +1,10 @@
 * {
   padding: 2px;
   color:#fff;
-  font-family: "MesloLGS NF", monospace;
+  /* font-family: "MesloLGS Nerd Font", monospace; */
+      font-family: "MesloLGS Nerd Font", "Font Awesome 6 Free", sans-serif;
+    /* Ou apenas: */
+    font-family: "MesloLGS Nerd Font", sans-serif;
 }
 #waybar{
    background: rgba(0, 0, 0, 0); /* fully transparent */
@@ -14,6 +17,7 @@
   padding: 0 6px;
   color: #888;
   font-size: 1.1em;
+  font-family: "MesloLGS Nerd Font", sans-serif;
 }
 
 #workspaces button.active {
@@ -22,8 +26,5 @@
 }
 #clock, #cpu, #memory, #date, #custom-gpu_usage, #custom-gpu_temp {
   padding: 0 8px;
-}
-#tray menu{
-  
 }
 

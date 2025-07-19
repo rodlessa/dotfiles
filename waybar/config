@@ -1,29 +1,49 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["clock"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["cpu", "custom/gpu", "custom/gpu_temp", "memory", "date"],
+  "modules-left": ["clock#time", "custom/usd_brl"],
+  "modules-center": ["hyprland/workspaces","clock#date"],
+  "modules-right": ["cpu", "custom/gpu", "custom/gpu_temp", "memory"],
 
-  "clock": {
+  "clock#time": {
     "format": " {:%H:%M}",
     "interval": 60
   },
-
+  "custom/usd_brl": {
+  "exec": "~/.config/waybar/scripts/usd_brl.sh",
+  "interval": 1800,  // 30 minutos
+  "format": "{}",
+  "tooltip": false
+  },
   "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "|{name} {icon} |",
+    "format": "{icon} {windows}",
     "format-icons": {
       "active": "",
       "default": ""
     },
     "persistent-workspaces": {
-      "DP-1": [1, 2, 3, 4, 5, 6],
-      "HDMI-A-2": [1, 2, 3, 4, 5, 6]
-    }
+      "DP-1": [1, 2, 3, 4, 5, 6]
+    },
+      "all-outputs": true,
+  "window-rewrite": {
+    "title=.*rmpc.*|musicfox.*|tidal-hifi": "",
+    "class=Alacritty|class=alacritty": "",
+    "title=.*\\.exe": "",
+    "class=thunar|nautilus|dolphin": "",
+    "class<Zen>": "",
+    "class<xfreerdp>": "",
+    "class<alacritty>": "",
+    "title=.*FreeRDP.*|xfreerdp.*": "󰢹",
+    "class<steam>": "",
+    "class<.*exe>": "󰖺",
+    "class<.*RimWorld.*>": "󰖺",
+    "class<.*virt-manager.*>":"",
+
+  }
   },
 
-  "date": {
+  "clock#date": {
     "format": " {:%Y-%m-%d}",
     "interval": 60
   },
