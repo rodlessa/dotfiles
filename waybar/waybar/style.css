@@ -1,0 +1,70 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    padding: 3px;
+    
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.9); /* Mocha Base com transparência */
+    border: 2px solid #89b4fa;               /* Borda azul em volta de tudo */
+    border-radius: 15px;                     /* Bordas bem arredondadas */
+    
+    /* O espaçamento "mágico" */
+    margin: 8px 15px 0px 35px;               /* Topo | Direita | Baixo | Esquerda */
+    
+    color: #cdd6f4;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#workspaces {
+	margin-left:10px;
+}
+/* Remove a borda de baixo que tínhamos colocado antes para não conflitar */
+window#waybar {
+    border-bottom: 2px solid #89b4fa; 
+}
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #cdd6f4;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    color: #89b4fa;
+    border-bottom: 3px solid #89b4fa;
+}
+
+#workspaces button.urgent {
+    background-color: #f38ba8;
+}
+
+#clock,
+#custom-exchange,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#tray {
+    margin-right: 10px;
+    color: #cdd6f4;
+}
+
+#custom-exchange {
+    color: #a6e3a1; /* Green for currency */
+}
+
+/* Tooltip Styling */
+tooltip {
+    background: #1e1e2e;
+    border: 1px solid #89b4fa;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}
