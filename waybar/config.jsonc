@@ -1,0 +1,67 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 51,
+    "width": 2560,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/exchange", "pulseaudio", "network", "cpu", "memory","temperature", "tray"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "all-outputs": true
+    },
+
+    "clock": {
+        "timezone": "America/Fortaleza",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "󰃭 {:%d/%m %H:%M}",
+        "format-alt": " {:%H:%M:%S}"
+    },
+
+    "custom/exchange": {
+        "format": "{}",
+        "interval": 600,
+        "return-type": "json",
+        "exec": "python ~/scripts/exchange_rate.py", // Caminho do seu script AwesomeAPI
+        "tooltip": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "⚠ Disconnected"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": " {}%"
+    },
+  "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 85,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "interval": 2,
+        "tooltip": true
+    }, 
+
+    "tray": {
+        "spacing": 10
+    }
+}
