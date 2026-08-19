@@ -54,10 +54,17 @@ hl.workspace_rule({
 -- AUTOSTART ---
 ----------------
 
-hl.exec_cmd("nm-applet &")
-hl.exec_cmd("waywallen-layer-shell")
-hl.exec_cmd("waybar & waywallen --no-ui")
-hl.exec_cmd("hyprctl dispatch focusmonitor DP-3 && hyprctl dispatch workspace 1")
+-- Wrapped in hl.on("hyprland.start", ...) so these fire exactly once, after
+-- Hyprland has actually finished initializing — NOT on every config reload.
+-- (Plain top-level hl.exec_cmd() calls re-run every time the file is parsed,
+-- which happens on every `hyprctl reload` / every save — that's what was
+-- causing duplicate waybar instances.)
+hl.on("hyprland.start", function()
+	hl.exec_cmd("nm-applet &")
+	hl.exec_cmd("waywallen-layer-shell")
+	hl.exec_cmd("waybar & waywallen --no-ui")
+	hl.exec_cmd("hyprctl dispatch focusmonitor DP-3 && hyprctl dispatch workspace 1")
+end)
 
 --------------------------
 -- ENVIRONMENT VARIABLES -
@@ -85,11 +92,13 @@ hl.config({
 		gaps_in = 1,
 		gaps_out = 5,
 		border_size = 1,
-		["col.active_border"] = "rgba(33ccffee) rgba(00ff99ee) 45deg",
-		["col.inactive_border"] = "rgba(595959aa)",
+		col = {
+			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+			inactive_border = "rgba(595959aa)",
+		},
 		resize_on_border = false,
 		allow_tearing = false,
-		layout = "dwindle",
+		layout = "master",
 	},
 
 	decoration = {
@@ -112,11 +121,19 @@ hl.config({
 	},
 
 	master = {
-		new_status = "master",
+		new_status = "slave",
+		allow_small_split = false,
+		mfact = 0.5,
+		orientation = "right",
+		smart_resizing = true,
+		drop_at_cursor = true,
+		new_on_top = true,
+		focus_master_on_close = true,
+		center_master_fallback = "left",
 	},
 
 	misc = {
-		force_default_wallpaper = -1,
+		force_default_wallpaper = 0,
 		disable_hyprland_logo = false,
 	},
 
@@ -207,7 +224,7 @@ hl.bind(mainMod .. "+Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. "+C", hl.dsp.window.close())
 hl.bind(
 	mainMod .. "+M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 hl.bind(mainMod .. "+E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. "+V", hl.dsp.window.float({ action = "toggle" }))
@@ -248,10 +265,8 @@ hl.bind(mainMod .. "+mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. "+mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
--- (verify these two against the current hl.dsp.window API — "drag"/"resize"
--- semantics for mouse binds shifted slightly under the new dispatcher system)
-hl.bind(mainMod .. "+mouse:272", hl.dsp.window.drag(), { drag = true })
-hl.bind(mainMod .. "+mouse:273", hl.dsp.window.resize({}), { drag = true })
+hl.bind(mainMod .. "+mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. "+mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
