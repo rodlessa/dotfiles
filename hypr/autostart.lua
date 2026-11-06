@@ -1,0 +1,7 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("nm-applet &")
+	hl.exec_cmd("waywallen-layer-shell &")
+	hl.exec_cmd("waywallen --no-ui &")
+	hl.exec_cmd("quickshell -p .config/quickshell/shell.qml &")
+	hl.exec_cmd("hyprctl dispatch focusmonitor DP-3 && hyprctl dispatch workspace 1")
+end)
