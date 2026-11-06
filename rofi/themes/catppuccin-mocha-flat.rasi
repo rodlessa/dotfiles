@@ -1,0 +1,126 @@
+/*
+ * Catppuccin Mocha — flat (no rounding)
+ * Matched against ~/.config/quickshell/shell.qml (colBg / colFg / colBlue)
+ * and the remaining Catppuccin-Mocha configs (dunst, kitty, ghostty, alacritty, btop).
+ *
+ *   base #1e1e2e   mantle #181825   surface0 #313244   surface1 #45475a
+ *   text #cdd6f4   subtext0 #a6adc8 blue #89b4fa       red #f38ba8
+ */
+
+* {
+    bg:               #1e1e2e; /* base      */
+    bg-alt:           #181825; /* mantle    */
+    fg:               #cdd6f4; /* text      */
+    fg-alt:           #a6adc8; /* subtext0  */
+    sel:              #313244; /* surface0  */
+    line:             #45475a; /* surface1  */
+    accent:           #89b4fa; /* blue      */
+    urgent:           #f38ba8; /* red       */
+
+    font:             "JetBrainsMono Nerd Font 10";
+
+    background-color: transparent;
+    text-color:       @fg;
+    border-radius:    0px;
+}
+
+window {
+    location:          center;
+    anchor:            center;
+
+    width:             900px;
+    padding:           12px;
+
+    background-color:  @bg;
+    border:            1px solid;
+    border-color:      @accent;
+    border-radius:     2px;
+}
+
+mainbox {
+    children:          [ inputbar, message, listview ];
+    spacing:           8px;
+    padding:           0px;
+}
+
+inputbar {
+    children:          [ prompt, entry ];
+    spacing:           10px;
+
+    padding:           10px 14px;
+    background-color:  @bg-alt;
+    border:            1px solid;
+    border-color:      @line;
+    border-radius:     0px;
+}
+
+prompt {
+    text-color:        @accent;
+    padding:           0px 2px 0px 0px;
+}
+
+entry {
+    placeholder:       "Search";
+    placeholder-color: @fg-alt;
+    text-color:        @fg;
+}
+
+message {
+    border:            1px solid;
+    border-color:      @urgent;
+    padding:           8px;
+}
+
+listview {
+    lines:             10;
+    columns:           1;
+    spacing:           2px;
+    scrollbar:         false;
+    cycle:             true;
+    dynamic:           true;
+    background-color:  transparent;
+    padding:           0px;
+}
+
+element {
+    children:          [ element-icon, element-text ];
+    spacing:           12px;
+    padding:           8px 12px;
+    background-color:  transparent;
+    border-radius:     0px;
+}
+
+element normal.normal {
+    background-color:  transparent;
+    text-color:        @fg;
+}
+
+element alternate.normal {
+    background-color:  transparent;
+    text-color:        @fg;
+}
+
+element selected.normal {
+    background-color:  @sel;
+    text-color:        @accent;
+}
+
+element-icon {
+    size:              20px;
+    background-color:  transparent;
+    text-color:        inherit;
+}
+
+element-text {
+    vertical-align:    0.5;
+    background-color:  transparent;
+    text-color:        inherit;
+}
+
+scrollbar {
+    width:             4px;
+    handle-width:      4px;
+    handle-color:      @line;
+    background-color:  transparent;
+    border-radius:     0px;
+}

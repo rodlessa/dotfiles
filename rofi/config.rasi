@@ -1,0 +1,23 @@
+/*
+ * rofi 2.0 config — Catppuccin Mocha, flat.
+ * Theme lives in themes/catppuccin-mocha-flat.rasi
+ */
+
+configuration {
+    modi:                "drun,run,window";
+    font:                "JetBrainsMono Nerd Font 13";
+    terminal:            "alacritty";
+
+    show-icons:          true;
+    icon-theme:          "Adwaita";
+
+    drun-display-format: "{name}";
+    drun-match-fields:   "name,generic,exec,categories,keywords";
+    sorting-method:      "fzf";
+
+    display-drun:        "";
+    display-run:         "";
+    display-window:      "";
+}
+
+@theme "catppuccin-mocha-flat"
